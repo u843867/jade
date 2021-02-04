@@ -170,7 +170,7 @@ $xml_body = ArrayToXml::convert($xml_data, 'root');
 
    /**
     * Call the \authorization service.
-    *
+    * 
     * @return \Illuminate\Http\Response
     */
    public function authorization(Request $request)

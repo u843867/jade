@@ -1,0 +1,18 @@
+.left {
+    left: calc(50% - 1px);  
+}
+
+.comp-ht {
+    height: calc(100% - 88px);
+}
+
+.point-two {
+    padding: 0.2rem;
+}
+
+#comp_container:hover > #more_details { background-color:bg-gray-100; }
+
+#comp_container:hover #more_details {
+    background-color: rgb(243, 244, 246);   
+}
+

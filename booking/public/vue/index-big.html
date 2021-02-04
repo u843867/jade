@@ -1,0 +1,95 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Learn Vue</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    
+
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <div id='app'>
+
+                <div class='top'>
+
+                    <div class='image'>
+                        <img v-bind:src="image">
+                    </div>
+
+                </div>
+
+                <div class='text'>
+                    <p>{{ text }}</p>
+                </div>
+
+                <div>
+                    <p v-if="name === 'Jurgen' ">Are you German?</p>
+                    <p v-else-if="name === 'John' ">Are you English?</p>
+                    <p v-else>I have no idea where you're from</p>
+                </div>
+
+                <div>
+                    <p>Football teams that I take an interest in are:</p>
+                    <li v-for="team in teams">{{team}}</li>
+                </div>
+
+                <button v-on:click="addToCart">Click Me!</button>
+                <p>My age is: {{ age }}</p>
+
+                <div v-bind:style="{ fontSize: fontSize + 'px' }">I'm styled using style binding</div>
+
+                <div v-bind:style="text_1">I'm styled using style Object</div>
+
+                <div v-bind:class="{ active: Active}">
+
+                    <p>I'm the activity example</p>
+
+                </div>
+
+                <h3>{{fullName}}</h3>
+                <hr>         
+                
+                
+                
+                <flight_card2
+                    id=1, departure_date='12/12/2019'>   
+                </flight_card2>
+                
+                
+                <flight_card
+                    v-for="flight_card_info in flight_card_infos"
+                    v-bind:key="flight_card_info.id"
+                    v-bind:flight_card_info="flight_card_info">   
+                </flight_card>
+
+                
+
+
+
+
+                    
+                
+
+            </div>
+
+
+
+
+        </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src='main.js'></script>
+
+</body>
+
+</html>
