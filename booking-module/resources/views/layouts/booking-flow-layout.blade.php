@@ -32,7 +32,7 @@
 
 
   @yield ('ibe-body')
-
+  @livewireScripts
 </body>
 
 </html>

@@ -345,9 +345,10 @@
           <div class="overflow-hidden bg-white rounded shadow">
             <div class="sm:p-6 px-4 py-5">
             <div>
-  <h3 class=" text-2xl font-medium leading-6 text-gray-500">
-    Select your fare ticket
-  </h3>
+            <h3 class="text-lg font-medium leading-6 text-gray-900">
+            Select your fare ticket
+            </h3>
+
   <dl class="sm:grid-cols-2 lg:grid-cols-3 grid grid-cols-1 gap-5 mt-5">
     <div class="overflow-hidden bg-white rounded-lg shadow">
       <div class="sm:p-6 px-4 py-5">

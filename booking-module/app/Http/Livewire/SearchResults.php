@@ -13,9 +13,11 @@ class SearchResults extends Component
     // this is an array of search parameters provided when this livewire component was instantiated on the frontend
     public $search_parameters;
 
-    //this is the serach results for the frontend display 
+    //this is the search results for the frontend display 
     public $search_results;
- 
+    public $current_step;
+
+    
 
     public function render()
     {
@@ -24,6 +26,7 @@ class SearchResults extends Component
         $client = new Client();
         $response = $client->request('GET', 'https://tequila-api.kiwi.com/v2/search', [
             'query' => [
+                // 'flight_type' => 'round',
                 'fly_from' => $this->search_parameters['fly_from'],
                 'fly_to' => $this->search_parameters['fly_to'],
                 'date_from' => $this->search_parameters['from_date'],
@@ -40,13 +43,11 @@ class SearchResults extends Component
         $this->search_results = json_decode($response,true);
         // $duration = $response['data'][0]['duration'];
         // dd($this->search_results['data'][0]['airlines']);
-        ($this->search_results);
-   
+        // dd($this->search_parameters);
+        dd($this->search_results['data'][0]);
+                
         return view('livewire.search-results');
     }
 
-    public function select_flight()
-    {
-        
-    }
+      
 }

@@ -19,6 +19,7 @@ Route::get('/home', function () {
 });
 
 Route::post('/booking/flow', 'App\Http\Controllers\booking_flow_Controller@booking_flow');
+Route::get('/booking/flow', 'App\Http\Controllers\booking_flow_Controller@booking_flow');
 
 Route::get('/search-results', function () {
     return view('/booking/searchResults');
