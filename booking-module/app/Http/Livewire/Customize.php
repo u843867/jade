@@ -10,4 +10,9 @@ class Customize extends Component
     {
         return view('livewire.customize');
     }
+
+    public function customized()
+    {
+        $this->emit('customizeComplete');
+    }
 }

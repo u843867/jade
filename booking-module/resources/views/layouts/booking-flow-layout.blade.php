@@ -30,9 +30,9 @@
 <body>
   <!-- This example requires Tailwind CSS v2.0+ -->
 
-
   @yield ('ibe-body')
   @livewireScripts
+  
 </body>
 
 </html>

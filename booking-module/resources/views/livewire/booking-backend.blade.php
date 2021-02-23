@@ -123,7 +123,7 @@
                     <img class="inline-block w-10 h-10 rounded-full" src="../images/profile.png" alt="">
                   </div>
                   <div class="ml-3">
-                    <p class="text-base font-medium text-white">
+                    <p class="text-base font-medium text-indigo-200">
                       Justin Jones
                     </p>
                     <!-- <p class="group-hover:text-white text-sm font-medium text-indigo-200">
@@ -198,7 +198,7 @@
               </a>
             </div>
 
-            <div x-bind:class="{'bg-indigo-800': $wire.reviewStep}" class="hover:bg-indigo-600 hover:bg-opacity-75 flex flex-shrink-0 p-4 rounded">
+            <div x-bind:class="{'bg-indigo-800': $wire.paymentStep}" class="hover:bg-indigo-600 hover:bg-opacity-75 flex flex-shrink-0 p-4 rounded">
               <a href="#" class="group flex-shrink-0 block">
                 <div class="flex items-start">
                   <div>
@@ -241,8 +241,8 @@
     </div>
   </div>
 
-  
-  <div class="flex flex-col flex-1 w-0 overflow-hidden">
+
+  <div x-data="displayComponents()" class="flex flex-col flex-1 w-0 overflow-hidden">
 
     <div class="relative z-10 flex flex-shrink-0 h-16 bg-white shadow">
       <button x-data="{usedKeyboard: false}" @keydown.window.tab="usedKeyboard = true" @click="$dispatch('open-menu', { open: true })" :class="{'focus:outline-none': !usedKeyboard}" class="focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden px-4 text-gray-500 border-r border-gray-200">
@@ -309,76 +309,122 @@
 
 
 
-    <main class="focus:outline-none relative flex-1 overflow-y-auto" tabindex="0">
+    <div id="searchResultsDiv" class="relative flex-1 overflow-y-auto" tabindex="0">
       <div class="py-3">
-        <div>
 
-
-          @if ($searchStep === true)
-
-          <main class="focus:outline-none relative flex-1 overflow-y-auto" tabindex="0">
-            <div class="py-6">
-              <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto mb-3">
-                <h1 class="text-2xl font-semibold text-gray-900">Search</h1>
-              </div>
-              <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto">
-                <!-- Replace with your content -->
-
-
-
-
-                @livewire('search-results', ['search_parameters' => $search_parameters])
-
-
-
-                <!-- /End replace -->
-              </div>
+        <!-- <p>searchStep: <span x-text='$wire.searchStep'></span></p> -->
+        <div x-show=$wire.searchStep  
+          x-transition:enter="transition-opacity ease-linear duration-300" 
+          x-transition:enter-start="opacity-0" 
+          x-transition:enter-end="opacity-100" 
+          x-transition:leave="transition-opacity ease-linear duration-300" 
+          x-transition:leave-start="opacity-100" 
+          x-transition:leave-end="opacity-0"
+          class="relative flex-1 overflow-y-auto">
+          <div class="py-6">
+            <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto mb-3">
+              <h1 class="text-2xl font-semibold text-gray-900">Search</h1>
             </div>
-          </main>  
+            <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto">
+              <!-- Replace with your content -->
+
+
+
+
+              @livewire('search-results', ['search_parameters' => $search_parameters])
+
+
+
+              <!-- /End replace -->
+            </div>
+          </div>
         </div>
+
+
+
+        <!-- <p>paxStep: <span x-text='$wire.passengerStep'></span></p> -->
+        <div x-show=$wire.passengerStep class="relative flex-1" 
+          x-transition:enter="transition-opacity ease-linear duration-300" 
+          x-transition:enter-start="opacity-0" 
+          x-transition:enter-end="opacity-100" 
+          x-transition:leave="transition-opacity ease-linear duration-300" 
+          x-transition:leave-start="opacity-100" 
+          x-transition:leave-end="opacity-0">
+
+          <div class="py-6">
+            <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto mb-3">
+              <h1 class="text-2xl font-semibold text-gray-900">Passengers</h1>
+            </div>
+            <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto">
+
+              @livewire('passengers')
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- <p>customizeStep: <span x-text='$wire.customizeStep'></span></p> -->
+        <div x-show=$wire.customizeStep  
+          x-transition:enter="transition-opacity ease-linear duration-300" 
+          x-transition:enter-start="opacity-0" 
+          x-transition:enter-end="opacity-100" 
+          x-transition:leave="transition-opacity ease-linear duration-300" 
+          x-transition:leave-start="opacity-100" 
+          x-transition:leave-end="opacity-0"
+          class="focus:outline-none relative flex-1 overflow-y-auto">
+          <div class="py-6">
+            <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto mb-3">
+              <h1 class="text-2xl font-semibold text-gray-900">Customize</h1>
+            </div>
+            <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto">
+
+              @livewire('customize')
+
+            </div>
+          </div>
+
+        </div>
+
+        <div x-show=$wire.paymentStep  
+          x-transition:enter="transition-opacity ease-linear duration-300" 
+          x-transition:enter-start="opacity-0" 
+          x-transition:enter-end="opacity-100" 
+          x-transition:leave="transition-opacity ease-linear duration-300" 
+          x-transition:leave-start="opacity-100" 
+          x-transition:leave-end="opacity-0"
+          class="focus:outline-none relative flex-1 overflow-y-auto">
+
+          <div class="py-6">
+            <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto mb-3">
+              <h1 class="text-2xl font-semibold text-gray-900">Review & Pay</h1>
+            </div>
+            <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto">
+
+              @livewire('payment')
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+
       </div>
-    </main>
 
 
-    @endif
 
-    @if ($passengerStep === true )
+    </div>
 
-    <main class="focus:outline-none relative flex-1 overflow-y-auto" tabindex="0">
-      <div class="py-6">
-        <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto mb-3">
-          <h1 class="text-2xl font-semibold text-gray-900">Passengers</h1>
-        </div>
-        <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto">
 
-          @livewire('passengers')
 
-        </div>
-      </div>
-      
-  
-  
-  </main>
 
-  @endif
 
-  @if ($customizeStep === true )
 
-    <main class="focus:outline-none relative flex-1 overflow-y-auto" tabindex="0">
-      <div class="py-6">
-        <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto mb-3">
-          <h1 class="text-2xl font-semibold text-gray-900">Customize</h1>
-        </div>
-        <div class="sm:px-6 md:px-8 max-w-4xl px-4 mx-auto">
 
-          @livewire('customize')
-
-        </div>
-      </div>
-  
-    </main>
-
-  @endif
-
+  </div>
 </div>
-

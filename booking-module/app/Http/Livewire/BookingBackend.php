@@ -14,6 +14,7 @@ class BookingBackend extends Component
     public $searchStep;
     public $passengerStep;
     public $customizeStep;
+    public $paymentStep;
     public $reviewStep;
     public $search_parameters;
     public $search_result;
@@ -21,7 +22,7 @@ class BookingBackend extends Component
 
         
     
-    protected $listeners = ['flightSelected', 'paxSaved'];
+    protected $listeners = ['flightSelected', 'paxSaved', 'customizeComplete'];
 
     
     
@@ -32,6 +33,7 @@ class BookingBackend extends Component
             $this->searchStep = true;  
             $this->passengerStep = false;
             $this->customizeStep = false;
+            $this->paymentStep = false;
         }
         return view('livewire.booking-backend');
     }
@@ -41,6 +43,7 @@ class BookingBackend extends Component
         $this->searchStep =  false; 
         $this->passengerStep = true;
         $this->customizeStep = false;
+        $this->paymentStep = false;
         
         $this->search_result = $search_result;
         // dd($this->search_result);
@@ -53,11 +56,28 @@ class BookingBackend extends Component
         $this->searchStep =  false; 
         $this->passengerStep = false; 
         $this->customizeStep = true; 
-
+        $this->paymentStep = false;
         
         $this->pax_array = $pax_array;
-        // dd($this->pax_array);
-        
+        // dd($this->pax_array);    
+    }
+
+    public function customizeComplete()
+    {
+        $this->searchStep =  false; 
+        $this->passengerStep = false; 
+        $this->customizeStep = false; 
+        $this->paymentStep = true; 
+                
+    }
+
+    public function paymentComplete()
+    {
+        $this->searchStep =  false; 
+        $this->passengerStep = false; 
+        $this->customizeStep = false; 
+        $this->paymentStep = false; 
+                
     }
 
 

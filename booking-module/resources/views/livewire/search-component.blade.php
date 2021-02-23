@@ -11,12 +11,12 @@
                     <div class="relative inline-block text-left">
 
                     
-                        <div x-data="{ tripTypeModal: false, tripType: 'Roundtrip' }">
+                        <div x-data="{ tripTypeModal: false, flight_type: 'Roundtrip' }">
                             
-                            <input x-bind:value="tripType" id="tripType" class="hidden" type="text" name="tripType" autocomplete="off"/>  
-                        <!-- <p x-text='tripType'></p> -->
+                            <input x-bind:value="flight_type" id="flight_type" class="hidden" type="text" name="flight_type" autocomplete="off"/>  
+                        <!-- <p x-text='flight_type'></p> -->
                             <button @click="tripTypeModal = true"  type="button" class="hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 inline-flex justify-center w-32 px-4 py-2 text-sm font-medium text-gray-700 bg-white rounded-md" id="options-menu" aria-haspopup="true" aria-expanded="true">
-                            <span x-text="tripType"></span>
+                            <span x-text="flight_type"></span>
                             
                         <!-- Heroicon name: chevron-down -->
                             <svg class=" w-5 h-5 ml-2 -mr-1" xmlns=" http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -37,9 +37,9 @@
 
                             <div x-show.transition.duration.200ms="tripTypeModal" @click.away="tripTypeModal = false" class=" ring-1 ring-black ring-opacity-5 absolute left-0 z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg cursor-pointer">
                                 <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                    <li @click="tripTypeModal = false, tripType = 'Roundtrip'" class="hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm text-gray-700" role="menuitem">Rountrip</li>
-                                    <li @click="tripTypeModal = false, tripType = 'Oneway'" class="hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm text-gray-700" role="menuitem">Oneway</li>
-                                    <li @click="tripTypeModal = false, tripType = 'Multicity'" class="hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm text-gray-700" role="menuitem">Multicity</li>  
+                                    <li @click="tripTypeModal = false, flight_type = 'Roundtrip'" class="hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm text-gray-700" role="menuitem">Roundtrip</li>
+                                    <li @click="tripTypeModal = false, flight_type = 'Oneway'" class="hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm text-gray-700" role="menuitem">Oneway</li>
+                                    <li @click="tripTypeModal = false, flight_type = 'Multicity'" class="hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm text-gray-700" role="menuitem">Multicity</li>  
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                     <div x-data="{ cabinModal: false, cabin: 'Economy' }">
                             
                             <input x-bind:value="cabin" id="cabin" class="hidden" type="text" name="cabin" autocomplete="off"/>  
-                        <!-- <p x-text='tripType'></p> -->
+                        <!-- <p x-text='flight_type'></p> -->
                             <button @click="cabinModal = true"  type="button" class="hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 inline-flex justify-center w-32 px-4 py-2 text-sm font-medium text-gray-700 bg-white rounded-md" id="options-menu" aria-haspopup="true" aria-expanded="true">
                             <span x-text="cabin"></span>
                             
@@ -132,7 +132,7 @@
                 <div class="inline-flex w-3/12">
                     <div  @click="poo = true" x-data="{ poo: false, fly_from:'', display_from:'' }" class="relative w-full">
                         <input wire:model="fly_from" class="hidden border" id="fly_from" name="fly_from" type="text"/>
-                        <div wire:keyup="getLocations('from')" class="relative" x-bind:class="{ 'z-40': poo }">
+                        <div wire:keyup.debounce.150ms="getLocations('from')" class="relative" x-bind:class="{ 'z-40': poo }">
                             <div class="absolute top-0 left-0 inline-flex items-center justify-center w-10 h-full text-gray-400">
                                 <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -194,7 +194,7 @@
                 <div class="inline-flex w-3/12">
                     <div  @click="poo = true" x-data="{ poo: false, fly_to:'', display_to:'' }" class="relative w-full">
                         <input wire:model="fly_to" class="hidden border" id="fly_to" name="fly_to" type="text"/>
-                        <div wire:keyup="getLocations('to')" class="relative" x-bind:class="{ 'z-40': poo }">
+                        <div wire:keyup.debounce.150ms="getLocations('to')" class="relative" x-bind:class="{ 'z-40': poo }">
                             <div class="absolute top-0 left-0 inline-flex items-center justify-center w-10 h-full text-gray-400">
                                 <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />

@@ -1,3 +1,25 @@
+function displayComponents() {
+    return {
+        searchResults:'hey!!!',
+        pax:null,
+        customize:null,
+        scrollTop() { 
+            // alert('I got fired');
+            // window.scrollTo(0, 500);
+            // alert('I got hired');
+            // alert('I got fired again!');
+            var myDiv = document.getElementById('searchResultsDiv');
+                myDiv.scrollTop = 0;
+                // alert(myDiv.scrollHeight);
+                // myDiv.innerHTML = variableLongText;
+                
+
+        },
+    }
+}
+
+
+
 function dropdown() {
     return {
 

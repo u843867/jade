@@ -19,7 +19,7 @@ class HppHeader extends Component
     public $order_json_symbol;
     public $order_json_amount;
     
-    protected $listeners = ['orderRendered'=> '[$order_json_symbol, $order_json_amount]', 'changeLang' => 'changeLang' ];
+    protected $listeners = ['changeLang' => 'changeLang'];
 
     public function render()
     {
